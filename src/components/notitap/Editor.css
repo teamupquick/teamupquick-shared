@@ -1,0 +1,437 @@
+.editor-container {
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 唯讀模式下的編輯器容器樣式 */
+.editor-container.readonly {
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.notitap-editor {
+  padding: 1rem;
+  min-height: 200px;
+  outline: none;
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* 唯讀模式下的編輯器樣式 */
+.readonly .notitap-editor {
+  min-height: auto;
+  padding: 0;
+}
+
+/* 唯讀模式下取消選中效果 */
+.readonly .ProseMirror-focused {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 唯讀模式下的鼠標指針樣式 */
+.readonly .ProseMirror {
+  cursor: default;
+}
+
+.notitap-editor p {
+  margin: 0.75em 0;
+}
+
+.notitap-editor h1 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.notitap-editor h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.notitap-editor h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.notitap-editor ul,
+.notitap-editor ol {
+  padding-left: 1.25rem;
+}
+
+.notitap-editor code {
+  background-color: #f1f5f9;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875em;
+}
+
+.notitap-editor pre {
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.notitap-editor pre code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+}
+
+.notitap-editor p.is-editor-empty:first-child::before {
+  color: #94a3b8;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.notitap-editor img {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.notitap-editor img.resizable-image {
+  cursor: pointer;
+}
+
+.notitap-editor table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  table-layout: fixed;
+}
+
+.notitap-editor table th,
+.notitap-editor table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem;
+  min-width: 80px;
+  word-break: break-word;
+  position: relative;
+}
+
+.notitap-editor table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+/* 表格反色条纹 */
+.notitap-editor table tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* 表格行悬停效果 */
+.notitap-editor table tr:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* 當表格被選中時的樣式 */
+.notitap-editor table.has-focus {
+  outline: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+}
+
+/* 選中單元格的樣式 */
+.notitap-editor td.selectedCell {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* 優化表格在小屏幕上的體驗 */
+@media (max-width: 640px) {
+  .notitap-editor table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* 調整表格內部的段落間距 */
+.notitap-editor table td p,
+.notitap-editor table th p {
+  margin: 0;
+}
+
+.notitap-editor a {
+  color: #3182ce;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.notitap-editor a:hover {
+  border-color: #3182ce;
+}
+
+.notitap-editor blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid #e2e8f0;
+  color: #4a5568;
+  margin: 1rem 0;
+}
+
+.notitap-editor .task-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.notitap-editor .task-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.notitap-editor .task-list-item input[type="checkbox"] {
+  margin: 0;
+}
+
+.character-count {
+  padding: 0.5rem;
+  color: #718096;
+  font-size: 0.875rem;
+  text-align: right;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* 任務列表樣式 */
+.notitap-editor ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+}
+
+.notitap-editor ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.5em 0;
+}
+
+.notitap-editor ul[data-type="taskList"] li[data-checked="true"] {
+  text-decoration: line-through;
+  color: #718096;
+}
+
+.notitap-editor ul[data-type="taskList"] li input[type="checkbox"] {
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  cursor: pointer;
+}
+
+.notitap-editor ul[data-type="taskList"] li > div {
+  margin: 0;
+  flex: 1;
+}
+
+/* 防止顯示 JSON 結構 */
+.notitap-editor ul[data-type="taskList"] li > div > p {
+  display: inline-block;
+  margin: 0;
+}
+
+/* 文本高亮 */
+.notitap-editor mark {
+  background-color: #fef9c3;
+  padding: 0.125rem 0;
+}
+
+/* 字體大小類別 */
+.notitap-editor .text-xs {
+  font-size: 12px !important;
+}
+
+.notitap-editor .text-sm {
+  font-size: 14px !important;
+}
+
+.notitap-editor .text-base {
+  font-size: 16px !important;
+}
+
+.notitap-editor .text-lg {
+  font-size: 18px !important;
+}
+
+.notitap-editor .text-xl {
+  font-size: 20px !important;
+}
+
+.notitap-editor .text-2xl {
+  font-size: 24px !important;
+}
+
+.notitap-editor .text-3xl {
+  font-size: 32px !important;
+}
+
+/* 直接支援內聯樣式 */
+.notitap-editor span[style*="font-size"] {
+  font-size: attr(style font-size) !important;
+}
+
+/* 確保字體大小的內嵌樣式優先 */
+.notitap-editor [style*="font-size"] {
+  font-size: attr(style font-size) !important;
+}
+
+/* 圖片調整器 */
+.image-resizer {
+  position: fixed;
+  background-color: white;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  z-index: 99999;
+  width: 260px;
+}
+
+/* 調整器的 portal 容器 */
+.image-resizer-portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99998;
+}
+
+.image-resizer-portal .image-resizer {
+  pointer-events: auto;
+}
+
+.slider-container {
+  margin-bottom: 12px;
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.image-resizer input[type="range"] {
+  width: 100%;
+  margin: 8px 0;
+  height: 6px;
+}
+
+.image-resizer .buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.image-resizer button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.image-resizer .cancel-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.image-resizer .apply-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.image-resizer .apply-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.image-resizer .cancel-btn:hover {
+  background-color: #e5e5e5;
+  transform: translateY(-1px);
+}
+
+/* 選中的圖片 */
+.ProseMirror img.selected,
+.ProseMirror .resizable-image.selected {
+  outline: 3px solid #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+/* 圖片工具列 */
+.image-toolbar {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px 12px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.image-toolbar .image-size-label {
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+.image-toolbar .slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 180px;
+  margin: 0;
+}
+
+.image-toolbar .size-value {
+  min-width: 36px;
+  text-align: right;
+}
+
+.image-toolbar input[type="range"] {
+  flex: 1;
+  height: 6px;
+}
+
+/* 圖片工具列按鈕 */
+.image-toolbar button {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.image-toolbar button:hover {
+  background-color: #f8fafc;
+}
+
+.image-toolbar .apply-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.image-toolbar .apply-btn:hover {
+  background-color: #2563eb;
+}

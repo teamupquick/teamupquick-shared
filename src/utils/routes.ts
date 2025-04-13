@@ -1,0 +1,16 @@
+export const ROUTES = {
+  signup: "/signup",
+  login: "/login",
+  home: "/",
+  project: "/project/:id",
+  projectForm: "/project-form/:id",
+  milestoneForm: "/milestone-form/:id/:projectId",
+  dashboard: "/dashboard",
+  leaderInvitation: "/leader-invitation/:publicId",
+  memberInvitation: "/member-invitation/:publicId",
+  tempInvitationList: "/temp-invitations",
+  talents: "/talents",
+  leaders: "/leaders",
+  point: "/point",
+  budget: "/budget",
+};

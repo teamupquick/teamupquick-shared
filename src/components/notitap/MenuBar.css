@@ -1,0 +1,228 @@
+.menu-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.menu-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  border: none;
+  background: none;
+  border-radius: 0.25rem;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-bar button:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.menu-bar button.is-active {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.menu-bar .divider {
+  width: 1px;
+  height: 1.5rem;
+  background-color: #e2e8f0;
+  margin: 0 0.25rem;
+}
+
+.menu-bar .select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar .select-icon {
+  position: absolute;
+  left: 0.5rem;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.menu-bar .font-size-select,
+.menu-bar .color-select {
+  padding: 0.25rem 0.5rem 0.25rem 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  color: #64748b;
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.menu-bar .font-size-select:hover,
+.menu-bar .color-select:hover {
+  border-color: #cbd5e1;
+}
+
+.menu-bar .font-size-select:focus,
+.menu-bar .color-select:focus {
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.1);
+}
+
+.menu-bar .font-size-select option,
+.menu-bar .color-select option {
+  padding: 0.5rem;
+}
+
+/* 工具列群組樣式 */
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* 下拉菜單容器 */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* 下拉菜單 */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.25rem;
+  min-width: 150px;
+  margin-top: 0.25rem;
+}
+
+/* 下拉菜單項目 */
+.dropdown-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  height: auto;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f1f5f9;
+}
+
+.dropdown-menu button.is-active {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* 顏色樣本 */
+.color-sample {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  margin-right: 0.5rem;
+}
+
+/* 字體大小下拉選單 */
+.fontsize-menu {
+  min-width: 100px;
+}
+
+.fontsize-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 顏色下拉選單 */
+.color-menu {
+  min-width: 120px;
+}
+
+.color-menu button {
+  display: flex;
+  align-items: center;
+}
+
+/* 不同類型的下拉菜單特定樣式 */
+.formatting-menu,
+.align-menu {
+  min-width: 120px;
+}
+
+.heading-menu,
+.insert-menu {
+  min-width: 150px;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .menu-bar {
+    justify-content: center;
+  }
+
+  .menu-bar .select-wrapper {
+    min-width: auto;
+  }
+
+  .menu-bar .font-size-select,
+  .menu-bar .color-select {
+    min-width: 80px;
+  }
+}
+
+/* 圖片大小選單 */
+.image-size-menu {
+  width: 280px;
+  padding: 12px;
+}
+
+.image-size-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-size-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 6px 12px;
+  background-color: #f3f4f6;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  align-self: flex-end;
+}
+
+.close-btn:hover {
+  background-color: #e5e7eb;
+}

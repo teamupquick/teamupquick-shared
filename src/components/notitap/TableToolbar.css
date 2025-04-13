@@ -1,0 +1,45 @@
+.table-toolbar {
+  position: fixed;
+  z-index: 9999;
+  background-color: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  transition: all 0.2s ease;
+  margin-top: -2px;
+  pointer-events: auto;
+}
+
+.table-toolbar .toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.table-toolbar .divider {
+  height: 24px;
+  width: 1px;
+  background-color: #ddd;
+  margin: 0 8px;
+}
+
+/* 提高按鈕的可點擊性 */
+.table-toolbar .toolbar-button {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+}
+
+/* 添加一個懸停效果，讓工具欄在不使用時略微變透明 */
+.table-toolbar:not(:hover) {
+  opacity: 0.85;
+}
+
+.table-toolbar:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
