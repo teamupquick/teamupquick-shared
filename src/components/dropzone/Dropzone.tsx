@@ -1,9 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import type { FileWithPath } from "react-dropzone";
 import { useDropzone } from "react-dropzone";
-import IconImg from "@shared-assets/icons/icon_img.svg?react";
 import { useCallback, useState } from "react";
-import { useSignUpData } from "@auth/components/signUp/hooks/useSignUpData";
 import { theme } from "@shared/utils/theme";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
@@ -13,20 +11,21 @@ interface Props {
   id: UploadType;
   title: string;
   text: string;
+  file: FileWithPath | null;
+  onFileChange: (file: FileWithPath | null) => void;
 }
 
 export default function Dropzone(props: Props) {
-  const { id, title, text } = props;
-  const { survey, setSurvey } = useSignUpData();
+  const { id, title, text, file, onFileChange } = props;
   const [previewLink, setPreviewLink] = useState("");
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
       const objectUrl = URL.createObjectURL(acceptedFiles[0]);
       setPreviewLink(objectUrl);
-      setSurvey({ ...survey, [id]: acceptedFiles[0] });
+      onFileChange(acceptedFiles[0]);
     },
-    [survey],
+    [onFileChange],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -56,13 +55,11 @@ export default function Dropzone(props: Props) {
       >
         <input {...getInputProps()} />
 
-        {survey[id] !== null ? (
-          // show image
-          // <img key="ooo" src={URL.createObjectURL(survey[id])}></img>
-          <Typography variant="caption">{survey[id]?.path}</Typography>
+        {file !== null ? (
+          <Typography variant="caption">{file.path}</Typography>
         ) : (
           <>
-            <IconImg />
+            <UploadFileIcon />
             <Typography variant="caption" my="8px">
               {isDragActive ? "拖放檔案到此處" : text}
             </Typography>
@@ -84,9 +81,9 @@ export default function Dropzone(props: Props) {
         *上傳檔案以PDF檔格式為主
       </Typography>
 
-      {previewLink && (
-        <a href={previewLink} download={survey[id]!.name}>
-          預覽 {survey[id]!.name}
+      {previewLink && file && (
+        <a href={previewLink} download={file.name}>
+          預覽 {file.name}
         </a>
       )}
     </Stack>

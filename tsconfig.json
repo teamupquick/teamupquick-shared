@@ -13,7 +13,12 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@shared/*": ["src/*"],
+      "@dto/*": ["src/dto/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]

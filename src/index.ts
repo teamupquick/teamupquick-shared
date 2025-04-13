@@ -27,6 +27,8 @@ export { default as Link } from "./components/link/Link";
 export { default as InputWithLabel } from "./components/inputWithLabel/InputWithLabel";
 export { default as FullScreenLoading } from "./components/fullScreenLoading/fullScreenLoading";
 export { default as FormButton } from "./components/formButton/FormButton";
+export { default as HiddenLayout } from "./components/hiddenLayout/HiddenLayout";
+export { default as LoginBackground } from "./components/loginBackground/LoginBackground";
 
 // API
 export * from "./api/userService";
