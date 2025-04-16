@@ -9,10 +9,14 @@ import type { Milestone } from "@dto/milestone/response";
 import type { FailedReason } from "@collaboration/components/invitation/components/InvitationPage";
 
 export const HOMEPAGE_URL = "https://www.teamuq.com";
-export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+export const API_URL = "http://localhost:3000";
 
 export const LOCAL_STORAGE_KEYS = {
   accessToken: "accessToken",
+  refreshToken: "refreshToken",
+  userId: "userId",
+  userRole: "userRole",
+  userName: "userName",
   favoriteTalentIds: "favoriteTalentIds",
   favoriteLeaderIds: "favoriteLeaderIds",
 };

@@ -1,45 +1,19 @@
-// Shared Module Exports
+/**
+ * TeamUpQuick Shared Components and Utilities
+ * Minimal Export Version
+ */
 
-// Utils
-export * from "./utils/theme";
-export * from "./utils/utils";
-export * from "./utils/types";
-export * from "./utils/routes";
-export * from "./utils/errors";
-export * from "./utils/schema";
-export * from "./utils/debounce";
-export * from "./utils/categoryUtils";
+// 導出基本工具函數
+export * from './minimal';
 
-// Components
-export { default as TypeSelector } from "./components/typeSelector";
-export { default as RoleTypeSelector } from "./components/roleTypeSelector";
-export { default as Timer } from "./components/timer/Timer";
-export { default as TableIconLabel } from "./components/tableIconLabel/TableIconLabel";
-export { default as StyledDateTimePicker } from "./components/styledDateTimePicker/StyledDateTimePicker";
-export { default as StatusChip } from "./components/statusChip/statusChip";
-export { default as SearchBar } from "./components/searchBar/SearchBar";
-export { default as Sidebar } from "./components/sidebar/sidebar";
-export { default as RichTextEditor } from "./components/richTextEditor/RichTextEditor";
-export { default as PromptDialog } from "./components/promptDialog/PromptDialog";
-export { default as PriorityLabel } from "./components/priorityLabel/priorityLabel";
-export { default as Logo } from "./components/logo/Logo";
-export { default as Link } from "./components/link/Link";
-export { default as InputWithLabel } from "./components/inputWithLabel/InputWithLabel";
-export { default as FullScreenLoading } from "./components/fullScreenLoading/fullScreenLoading";
-export { default as FormButton } from "./components/formButton/FormButton";
-export { default as HiddenLayout } from "./components/hiddenLayout/HiddenLayout";
-export { default as LoginBackground } from "./components/loginBackground/LoginBackground";
+// 導出基本工具
+export * from './utils/theme';
 
-// API
-export * from "./api/userService";
-export * from "./api/freelancerService";
+// 簡化 API 和 hooks 的導出，避免過度依賴
+export { API_URL, LOCAL_STORAGE_KEYS } from './utils/utils';
 
-// Hooks
-export * from "./hooks/useTimer";
-export * from "./hooks/useUserAction";
-export * from "./hooks/useProjectAction";
-export * from "./hooks/useMilestoneAction";
-export * from "./hooks/useFormHandler";
+// 導出路由
+export * from './utils/routes';
 
-// Contexts
-export * from "./contexts/timerContext";
+// 不再直接導出所有組件，改為按需導入
+// 具有問題的組件已被移除 

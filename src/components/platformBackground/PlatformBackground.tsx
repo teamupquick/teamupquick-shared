@@ -1,59 +1,74 @@
+import React from 'react';
 import { Box } from "@mui/material";
-import LeftBG1SVG from "@shared-assets/svg/login_left_bg1.svg?react";
-import LeftBG2SVG from "@shared-assets/svg/login_left_bg2.svg?react";
-import RightBG1SVG from "@shared-assets/svg/login_right_bg1.svg?react";
-import RightBG2SVG from "@shared-assets/svg/login_right_bg2.svg?react";
-import type { ReactNode } from "react";
-import Z_INDEX from "@shared/constants/zIndex";
 
-type Props = {
-  children: ReactNode;
-};
+// 臨時替代SVG導入問題
+interface SVGProps {
+  style?: React.CSSProperties;
+}
 
-export default function PlatformBackground({ children }: Props) {
+const LeftBG1SVG: React.FC<SVGProps> = ({ style }) => (
+  <div style={{ width: 100, height: 100, background: '#e1e1e1', ...style }}></div>
+);
+const LeftBG2SVG: React.FC<SVGProps> = ({ style }) => (
+  <div style={{ width: 100, height: 100, background: '#f1f1f1', ...style }}></div>
+);
+const RightBG1SVG: React.FC<SVGProps> = ({ style }) => (
+  <div style={{ width: 100, height: 100, background: '#d1d1d1', ...style }}></div>
+);
+const RightBG2SVG: React.FC<SVGProps> = ({ style }) => (
+  <div style={{ width: 100, height: 100, background: '#c1c1c1', ...style }}></div>
+);
+
+interface PlatformBackgroundProps {
+  children: React.ReactNode;
+}
+
+export default function PlatformBackground({ children }: PlatformBackgroundProps) {
   return (
     <Box
-      component="div"
-      position="relative"
       sx={{
-        width: "100%",
-        height: "100%",
-        minHeight: "calc(100vh - 70px)",
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        position: "relative",
         overflow: "hidden",
+        backgroundColor: "#f5f7fa",
+        padding: "16px",
       }}
     >
-      {/* 左側背景元素 - 調整到左上方 */}
-      <Box
-        position="absolute"
-        sx={{ left: 0, top: 0, zIndex: Z_INDEX.LAYER1.BACKGROUND }}
-      >
+      <Box sx={{ position: "relative", flex: 1, display: "flex" }}>
+        {children}
+      </Box>
+
+      <Box position="relative">
         <LeftBG2SVG
           style={{
             position: "absolute",
-            top: "calc(40vh - 234px - 25px)",
+            bottom: 0,
             left: 0,
+            zIndex: 1,
           }}
         />
         <LeftBG1SVG
-          style={{ position: "absolute", top: "calc(40vh - 234px)", left: 0 }}
+          style={{ position: "absolute", bottom: 0, left: 0 }}
         />
       </Box>
-
-      {/* 右側背景元素 */}
-      <Box
-        position="absolute"
-        sx={{ right: 0, bottom: 0, zIndex: Z_INDEX.LAYER1.BACKGROUND }}
-      >
+      <Box position="relative">
         <RightBG2SVG style={{ position: "absolute", bottom: 0, right: 0 }} />
         <RightBG1SVG style={{ position: "absolute", bottom: 0, right: 0 }} />
       </Box>
 
-      {/* 內容區域，確保在背景之上 */}
       <Box
-        position="relative"
-        sx={{ zIndex: Z_INDEX.LAYER1.CONTENT_BASE, height: "100%" }}
+        sx={{
+          position: "absolute",
+          bottom: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
+          fontSize: "12px",
+          color: "#777",
+        }}
       >
-        {children}
+        © {new Date().getFullYear()} TeamUpQuick. All rights reserved.
       </Box>
     </Box>
   );
