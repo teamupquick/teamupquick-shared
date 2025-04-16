@@ -12,27 +12,43 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
+    - name: Debug Directory
+      run: |
+        pwd
+        ls -la
     - name: Install dependencies
       run: |
         echo "Installing dependencies..."
         npm install
-        if [ ! -f package-lock.json ]; then
-          echo "Generating package-lock.json..."
-          npm i --package-lock-only
-        fi
+        echo "Dependencies installed successfully."
+    - name: Check files after install
+      run: |
+        ls -la
+        cat package.json
     - name: Build minimal version
-      run: npm run build:minimal
+      run: |
+        echo "Building minimal version..."
+        npm run build:minimal
+        echo "Build completed."
     - name: List files in dist directory
-      run: ls -la dist/
+      run: |
+        echo "Contents of dist directory:"
+        ls -la dist/ || echo "dist directory does not exist"
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Deploy to S3
+      if: success()
       run: |
+        echo "Deploying to S3..."
         aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}/ --delete
+        echo "Deployment to S3 completed."
     - name: Invalidate CloudFront cache
+      if: success()
       run: |
+        echo "Invalidating CloudFront cache..."
         aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        echo "Cache invalidation completed."
