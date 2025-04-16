@@ -44,11 +44,11 @@ jobs:
       if: success()
       run: |
         echo "Deploying to S3..."
-        aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}/ --delete
+        aws s3 sync dist/ s3://${{ secrets.SHARED_S3_BUCKET }}/ --delete
         echo "Deployment to S3 completed."
     - name: Invalidate CloudFront cache
       if: success()
       run: |
         echo "Invalidating CloudFront cache..."
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.SHARED_CLOUDFRONT_ID }} --paths "/*"
         echo "Cache invalidation completed."
